@@ -67,14 +67,12 @@ void MainWindow::sendMailSlot()
 
     MimeMessage message;
 
-    //message.setSender(new EmailAddress("jc@deocar.com.ar", "Juan Carlos")); //quien envia
     QString deNombre = ui->deNombreLineEdit->text();
     QString deCorreo = ui->deCorreoLineEdit->text();
     message.setSender(new EmailAddress( deCorreo, deNombre));
 
     QString paraCorreo = ui->paraLineEdit->text();
     message.addRecipient(new EmailAddress( paraCorreo, "")); //quien recibe
-//    message.addRecipient(new EmailAddress("webmaster@jcbsoftware.com.ar", "")); //quien recibe
     QString asunto = ui->asuntoLineEdit->text();
     message.setSubject( asunto ); //titulo
 
@@ -110,73 +108,6 @@ void MainWindow::sendMailSlot()
 
     smtp.quit();
 
-/*
-    QString server = ui->servidorLineEdit->text().trimmed();
-    int port = ui->puertoSpinBox->value();
-    SmtpClient::ConnectionType seguridad = (SmtpClient::ConnectionType) ui->seguridadComboBox->currentIndex();
-
-
-
-    //SmtpClient smtp("mail.seewald.com.ar", 465, SmtpClient::SslConnection);
-    SmtpClient smtp(server, port, seguridad);
-    // We need to set the username (your email address) and the password
-    // for smtp authentification.
-
-    QString usuario = ui->usuarioLineEdit->text();
-    QString password = ui->claveLineEdit->text();
-    int autenticacion = ui->autenticacionComboBox->currentIndex();
-    if (autenticacion) {
-        smtp.setUser( usuario );
-        smtp.setPassword( password );
-
-//        smtp.setUser("jc@seewald.com.ar");
-//        smtp.setPassword("mmNBWXWMi9E_44");
-    }
-
-
-    // Now we create a MimeMessage object. This will be the email.
-
-    MimeMessage message;
-
-    QString de = ui->deLineEdit->text();
-    QString correo = ui->correoLineEdit->text();
-    QString para = ui->paraLineEdit->text();
-    QString asunto = ui->asuntoLineEdit->text();
-
-    message.setSender(new EmailAddress(correo, de)); //quien envia
-    message.addRecipient(new EmailAddress(para, "JC")); //quien recibe
-    message.setSubject(asunto); //titulo
-
-    // Now add some text to the email.
-    // First we create a MimeText object.
-
-    MimeText text;
-
-    QString cuerpo = ui->cuerpoTextEdit->toPlainText();
-    text.setText(cuerpo);
-
-    // Now add it to the mail
-
-    message.addPart(&text);
-
-    // Now we can send the mail
-
-    smtp.connectToHost();
-
-
-//    if(autenticacion)
-//        smtp.login(ui->usuarioLineEdit->text(), ui->claveLineEdit->text());
-//    else
-        smtp.login();
-
-
-    if (smtp.sendMail(message))
-        qDebug() << "OK";
-    else
-        qDebug() << "Fails";
-
-    smtp.quit();
-*/
 }
 
 void MainWindow::agregarAdjuntoSlot()
