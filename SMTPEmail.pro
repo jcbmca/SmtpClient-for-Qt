@@ -11,6 +11,8 @@ TARGET = SMTPEmail
 # Build as an application
 #TEMPLATE = app
 
+DESTDIR = ../SmtpClient-for-Qt/lib
+
 # Build as a library
 TEMPLATE = lib
 DEFINES += SMTP_BUILD
